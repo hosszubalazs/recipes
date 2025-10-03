@@ -1,63 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Upload Test Page</title>
+    <title>Deployment Champion!</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            line-height: 1.6;
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 50px; 
+            background: #f0f8ff;
         }
-        .upload-container {
-            background-color: #f4f4f4;
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 30px;
+        .trophy { 
+            font-size: 4em; 
+            margin: 20px; 
         }
-        input[type="file"] {
-            margin: 10px 0;
+        .counter { 
+            font-size: 3em; 
+            color: #2c5aa0; 
+            font-weight: bold;
         }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
+        button { 
+            padding: 15px 30px; 
+            font-size: 1.2em; 
+            background: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
             cursor: pointer;
         }
-        button:hover {
-            background-color: #45a049;
-        }
-        .presentation {
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+        .team-name {
+            color: #ff6b6b;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-
-    <h1>Document Upload Test</h1>
-
-    <div class="upload-container">
-        <h2>Upload a Document</h2>
-        <!-- The form uses the POST method and multipart/form-data encoding for file uploads -->
-        <form action="https://httpbin.org/post" method="post" enctype="multipart/form-data">
-            <label for="fileToUpload"><strong>Choose a file to upload:</strong></label><br>
-            <input type="file" id="fileToUpload" name="fileToUpload" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"><br><br>
-            <button type="submit">Upload File</button>
-        </form>
+    <div class="trophy">🏆</div>
+    <h1>Deployment Champion!</h1>
+    <p>Team <span class="team-name" id="teamName">Awesome Testers</span> is rocking CI/CD!</p>
+    
+    <div class="counter" id="deployCount">0</div>
+    <p>Successful Deployments</p>
+    
+    <button onclick="celebrateDeployment()">🎉 New Deployment!</button>
+    
+    <div style="margin-top: 30px;">
+        <p>🚀 Next mission: Master GitHub Actions</p>
+        <p>💡 Pro tip: Every deployment makes you better!</p>
     </div>
 
-    <div class="presentation">
-        <h2>Upload Status</h2>
-        <p>After you submit the form, the page will redirect to a confirmation page from <a href="https://httpbin.org" target="_blank">https://httpbin.org</a>. This demonstrates that the file was successfully sent.</p>
-        <p>You can use this area to present results or information about the uploaded document.</p>
-    </div>
-
+    <script>
+        let count = 0;
+        
+        function celebrateDeployment() {
+            count++;
+            document.getElementById('deployCount').textContent = count;
+            
+            // Simple celebration
+            alert(`🎊 Deployment #${count} successful! You're amazing!`);
+            
+            // Change trophy occasionally
+            const trophies = ['🏆', '⭐', '🚀', '💻', '👑'];
+            document.querySelector('.trophy').textContent = 
+                trophies[Math.floor(Math.random() * trophies.length)];
+        }
+        
+        // Optional: Get team name from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const team = urlParams.get('team');
+        if (team) {
+            document.getElementById('teamName').textContent = team;
+        }
+    </script>
 </body>
 </html>
